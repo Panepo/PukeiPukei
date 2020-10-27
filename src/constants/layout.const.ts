@@ -16,6 +16,7 @@ export const skillCrit: Layout[] = [
 export const skillCrip: Layout[] = [
   { text: '超會心', id: 'crip', data: Data.skillCrip },
   { text: '屬性會心', id: 'ecri', data: Data.skillEcri },
+  { text: '特殊會心', id: 'scri', data: Data.skillScri },
   { text: '屬性加速', id: 'eadd', data: Data.skillEadd },
   { text: '龍脈覺醒', id: 'safi', data: Data.skillSafi }
 ]

@@ -8,19 +8,35 @@ import TextField from '@material-ui/core/TextField'
 import Select from '@material-ui/core/Select'
 import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
-
+import Typography from '@material-ui/core/Typography'
+import Paper from '@material-ui/core/Paper'
+import Button from '@material-ui/core/Button'
 import * as Data from './constants/calculator.const'
 import * as Layout from './constants/layout.const'
-import { CalcInput } from './models/calculator.model'
+import { CalcInput, CalcOutput } from './models/calculator.model'
+import * as Calculator from './helpers/calculator.helper'
+import { getTextById } from './helpers/common.helper'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      margin: theme.spacing(5)
+      marginTop: '-55vh',
+      marginBottom: '60px',
+      flex: 1
     },
     formControl: {
       margin: theme.spacing(1),
       width: 130
+    },
+    subtitle: {
+      color: 'white',
+      background: 'linear-gradient(165deg, #9966ff 20%, #ff99ff 70%)'
+    },
+    subtitleText: {
+      margin: theme.spacing(1)
+    },
+    inputs: {
+      margin: theme.spacing(1)
     }
   })
 )
@@ -28,22 +44,28 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function Content() {
   const classes = useStyles()
   const [state, setState] = React.useState<CalcInput>({
-    type: 0, // 武器別
-    atk: 0,
-    cri: 0,
-    etype: 0,
-    ele: 0,
-    sha: 0, // 斬味
-    agil: 0, // 挑戰者
-    maxp: 0, // 無傷
-    hate: 0, // 怨恨
-    weak: 0, // 弱點特效
-    mind: 0, // 渾身
-    real: 0, // 力量解放
-    crip: 0, // 超會心
-    ecri: 0, // 屬性會心
-    eadd: 0, // 屬性加速
-    safi: 0 // 龍脈覺醒
+    type: '0', // 武器別
+    atk: '0',
+    cri: '0',
+    etype: '0',
+    ele: '0',
+    sha: '0', // 斬味
+    agil: '0', // 挑戰者
+    maxp: '0', // 無傷
+    hate: '0', // 怨恨
+    weak: '0', // 弱點特效
+    mind: '0', // 渾身
+    real: '0', // 力量解放
+    crip: '0', // 超會心
+    ecri: '0', // 屬性會心
+    scri: '0', // 特殊會心
+    eadd: '0', // 屬性加速
+    safi: '0' // 龍脈覺醒
+  })
+  const [output, setOutput] = React.useState<CalcOutput>({
+    cri: '0',
+    atk: '0',
+    ele: '0'
   })
 
   const handleChange = (
@@ -63,6 +85,41 @@ export default function Content() {
     setState({
       ...state,
       [name]: event.target.value
+    })
+  }
+
+  const handleCalc = () => {
+    const cri = Math.floor(Calculator.calcCritical(state))
+    const atk = Math.round(Calculator.calcAttack(state, cri))
+    const ele = Math.round(Calculator.calcElement(state, cri))
+    const eleType = getTextById(Data.eleType, state.etype)
+
+    setOutput({
+      cri: cri.toString(),
+      atk: atk.toString(),
+      ele: eleType + ' ' + ele.toString()
+    })
+  }
+
+  const handleCancel = () => {
+    setState({
+      type: '0', // 武器別
+      atk: '0',
+      cri: '0',
+      etype: '0',
+      ele: '0',
+      sha: '0', // 斬味
+      agil: '0', // 挑戰者
+      maxp: '0', // 無傷
+      hate: '0', // 怨恨
+      weak: '0', // 弱點特效
+      mind: '0', // 渾身
+      real: '0', // 力量解放
+      crip: '0', // 超會心
+      ecri: '0', // 屬性會心
+      scri: '0', // 特殊會心
+      eadd: '0', // 屬性加速
+      safi: '0' // 龍脈覺醒
     })
   }
 
@@ -222,8 +279,54 @@ export default function Content() {
     <Container>
       <Card className={classes.root}>
         <CardContent>
-          {renderState}
-          {renderSkill}
+          <Paper className={classes.subtitle} variant="outlined">
+            <Typography
+              className={classes.subtitleText}
+              gutterBottom
+              variant="h5"
+              component="h2"
+            >
+              Status
+            </Typography>
+          </Paper>
+          <div className={classes.inputs}>
+            {renderState}
+            {renderSkill}
+          </div>
+          <Button onClick={handleCalc} color="primary">
+            Calculate
+          </Button>
+          <Button onClick={handleCancel} color="primary">
+            Cancel
+          </Button>
+          <Paper className={classes.subtitle} variant="outlined">
+            <Typography
+              className={classes.subtitleText}
+              gutterBottom
+              variant="h5"
+              component="h2"
+            >
+              Results
+            </Typography>
+          </Paper>
+          <TextField
+            id="outCri"
+            label="會心"
+            className={classes.formControl}
+            value={output.cri}
+          />
+          <TextField
+            id="outAtk"
+            label="攻擊"
+            className={classes.formControl}
+            value={output.atk}
+          />
+          <TextField
+            id="outEle"
+            label="屬性"
+            className={classes.formControl}
+            value={output.ele}
+          />
         </CardContent>
       </Card>
     </Container>
