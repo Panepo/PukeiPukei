@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.js": "/PukeiPukei/static/js/main.7dd06e36.chunk.js",
+    "main.js.map": "/PukeiPukei/static/js/main.7dd06e36.chunk.js.map",
+    "runtime-main.js": "/PukeiPukei/static/js/runtime-main.39c4c02c.js",
+    "runtime-main.js.map": "/PukeiPukei/static/js/runtime-main.39c4c02c.js.map",
+    "static/css/2.00425bfc.chunk.css": "/PukeiPukei/static/css/2.00425bfc.chunk.css",
+    "static/js/2.9de603a2.chunk.js": "/PukeiPukei/static/js/2.9de603a2.chunk.js",
+    "static/js/2.9de603a2.chunk.js.map": "/PukeiPukei/static/js/2.9de603a2.chunk.js.map",
+    "static/js/3.b3989df9.chunk.js": "/PukeiPukei/static/js/3.b3989df9.chunk.js",
+    "static/js/3.b3989df9.chunk.js.map": "/PukeiPukei/static/js/3.b3989df9.chunk.js.map",
+    "index.html": "/PukeiPukei/index.html",
+    "static/css/2.00425bfc.chunk.css.map": "/PukeiPukei/static/css/2.00425bfc.chunk.css.map",
+    "static/js/2.9de603a2.chunk.js.LICENSE.txt": "/PukeiPukei/static/js/2.9de603a2.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/PukeiPukei/static/media/roboto-latin-900italic.cb5ad999.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.39c4c02c.js",
+    "static/css/2.00425bfc.chunk.css",
+    "static/js/2.9de603a2.chunk.js",
+    "static/js/main.7dd06e36.chunk.js"
+  ]
+}
