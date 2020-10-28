@@ -47,7 +47,7 @@ export const calcElement = (input: CalcInput, crit: number) => {
       Data.skillEcriWeapon.indexOf(input.type) >= 0 ? 'value2' : 'value1'
     const crip = getValueById(Data.skillEcri, input.ecri, keyCri)
     ele = ele * (1 + (crit / 100) * crip)
-    return ele / 10
+    return ele
   } else {
     let sta: number = parseInt(input.ele, 0)
     const staSafi = getValueById(Data.skillSafi, input.safi, 'value2')
@@ -57,6 +57,6 @@ export const calcElement = (input: CalcInput, crit: number) => {
       Data.skillEcriWeapon.indexOf(input.type) >= 0 ? 'value2' : 'value1'
     const crip = getValueById(Data.skillScri, input.scri, keyCri)
     sta = sta * (1 + (crit / 100) * crip)
-    return sta / 10
+    return sta
   }
 }

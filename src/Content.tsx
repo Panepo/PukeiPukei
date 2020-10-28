@@ -11,11 +11,14 @@ import FormControl from '@material-ui/core/FormControl'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
+import MenuItem from '@material-ui/core/MenuItem'
 import * as Data from './constants/calculator.const'
 import * as Layout from './constants/layout.const'
 import { CalcInput, CalcOutput } from './models/calculator.model'
 import * as Calculator from './helpers/calculator.helper'
 import { getTextById } from './helpers/common.helper'
+import imageWeapon from './images/weapon'
+import imageElement from './images/element'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -37,7 +40,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     inputs: {
       margin: theme.spacing(1)
-    }
+    },
+    image: {width: 15,
+      height: 15,}
   })
 )
 
@@ -128,7 +133,6 @@ export default function Content() {
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="type">武器種類</InputLabel>
         <Select
-          native
           value={state.type}
           onChange={handleSelect}
           inputProps={{
@@ -136,8 +140,17 @@ export default function Content() {
             id: 'type'
           }}
         >
-          {Data.weaponType.map((type) => {
-            return <option value={type.id}>{type.text}</option>
+          {Data.weaponType.map((type, index) => {
+            return (
+              <MenuItem value={type.id}>
+                <img
+                  className={classes.image}
+                  src={imageWeapon[index as keyof typeof imageWeapon]}
+                  alt={type.text}
+                />
+                {" " + type.text}
+              </MenuItem>
+            )
           })}
         </Select>
       </FormControl>
@@ -164,7 +177,6 @@ export default function Content() {
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="etype">屬性</InputLabel>
         <Select
-          native
           value={state.etype}
           onChange={handleSelect}
           inputProps={{
@@ -172,8 +184,20 @@ export default function Content() {
             id: 'etype'
           }}
         >
-          {Data.eleType.map((type) => {
-            return <option value={type.id}>{type.text}</option>
+          <MenuItem value={0}>
+            無
+          </MenuItem>
+          {Data.eleType.map((type, index) => {
+            return (
+              <MenuItem value={type.id}>
+                <img
+                  className={classes.image}
+                  src={imageElement[index as keyof typeof imageElement]}
+                  alt={type.text}
+                />
+                {" " + type.text}
+              </MenuItem>
+            )
           })}
         </Select>
       </FormControl>
@@ -279,7 +303,7 @@ export default function Content() {
     <Container>
       <Card className={classes.root}>
         <CardContent>
-          <Paper className={classes.subtitle} variant="outlined">
+          <Paper className={classes.subtitle} variant="outlined" elevation={0}>
             <Typography
               className={classes.subtitleText}
               gutterBottom
@@ -299,7 +323,7 @@ export default function Content() {
           <Button onClick={handleCancel} color="primary">
             Cancel
           </Button>
-          <Paper className={classes.subtitle} variant="outlined">
+          <Paper className={classes.subtitle} variant="outlined" elevation={0}>
             <Typography
               className={classes.subtitleText}
               gutterBottom

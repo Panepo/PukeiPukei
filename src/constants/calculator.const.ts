@@ -23,16 +23,15 @@ export const weaponType: StructDataValue[] = [
 ]
 
 export const eleType: StructData[] = [
-  { id: '0', text: '無' },
   { id: '1', text: '火' },
   { id: '2', text: '冰' },
   { id: '3', text: '水' },
   { id: '4', text: '雷' },
   { id: '5', text: '龍' },
   { id: '6', text: '毒' },
-  { id: '7', text: '眠' },
-  { id: '8', text: '麻' },
-  { id: '9', text: '爆' }
+  { id: '7', text: '睡眠' },
+  { id: '8', text: '麻痺' },
+  { id: '9', text: '爆破' }
 ]
 
 export const shaType: StructDataValue2[] = [
