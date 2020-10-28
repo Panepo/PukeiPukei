@@ -2,6 +2,12 @@
   "name": "pukeipukei",
   "version": "0.1.0",
   "private": true,
+  "author": "Panepo <panepo@github.io>",
+  "homepage": "https://panepo.github.io/PukeiPukei",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Panepo/PukeiPukei.git"
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
@@ -24,6 +30,7 @@
     "@types/jest": "^26.0.15",
     "eslint-config-prettier": "^6.14.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "gh-pages": "^3.1.0",
     "prettier": "^2.1.2"
   },
   "scripts": {
@@ -33,8 +40,7 @@
     "eject": "react-scripts eject",
     "prettier": "prettier --single-quote --no-semi --trailing-comma none --write \"src/**/*.{ts,tsx}\"",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build",
-    "precommit": "lint-staged"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
