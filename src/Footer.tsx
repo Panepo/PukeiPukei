@@ -6,16 +6,14 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       background: '#424242',
+      height: '60px',
       width: '100%'
-    },
-    textDiv: {
-      paddingLeft: '40px',
-      paddingTop: theme.spacing(1),
-      paddingBottom: theme.spacing(1)
     },
     text: {
       color: '#BDBDBD',
-      fontSize: '12px'
+      fontSize: '13px',
+      paddingLeft: '40px',
+      paddingTop: '20px'
     }
   })
 )
@@ -24,11 +22,9 @@ export default function Footer() {
   const classes = useStyles()
   return (
     <footer className={classes.root}>
-      <div className={classes.textDiv}>
         <Typography className={classes.text}>
           Copyright &copy; Panepo@Github 2020 All Rights Reserved.
         </Typography>
-      </div>
     </footer>
   )
 }

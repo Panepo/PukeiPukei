@@ -19,7 +19,8 @@ export const calcAttack = (input: CalcInput, crit: number) => {
   const atkAgil = getValueById(Data.skillAgil, input.agil, 'value1')
   const atkMaxp = getValueById(Data.skillMaxp, input.maxp, 'value')
   const atkHate = getValueById(Data.skillHate, input.hate, 'value')
-  atk = atk + atkAgil + atkMaxp + atkHate
+  const atkBane = getValueById(Data.skillBane, input.bane, 'value1')
+  atk = atk + atkAgil + atkMaxp + atkHate + atkBane
 
   const sha = getValueById(Data.shaType, input.sha, 'value1')
   atk = atk * sha
@@ -38,7 +39,8 @@ export const calcElement = (input: CalcInput, crit: number) => {
     let ele: number = parseInt(input.ele, 0)
     const eleEadd = getValueById(Data.skillEadd, input.eadd, 'value')
     const eleSafi = getValueById(Data.skillSafi, input.safi, 'value1')
-    ele = ele + eleEadd + eleSafi
+    const eleBane = getValueById(Data.skillBane, input.bane, 'value2')
+    ele = ele + eleEadd + eleSafi + eleBane
 
     const sha = getValueById(Data.shaType, input.sha, 'value2')
     ele = ele * sha
@@ -52,6 +54,9 @@ export const calcElement = (input: CalcInput, crit: number) => {
     let sta: number = parseInt(input.ele, 0)
     const staSafi = getValueById(Data.skillSafi, input.safi, 'value2')
     sta = sta + staSafi
+
+    const staBane = getValueById(Data.skillBane, input.bane, 'value3')
+    sta = sta * staBane
 
     const keyCri =
       Data.skillEcriWeapon.indexOf(input.type) >= 0 ? 'value2' : 'value1'

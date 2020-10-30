@@ -16,6 +16,7 @@ export interface CalcInput {
   scri: string // 特殊會心
   eadd: string // 屬性加速
   safi: string // 龍脈覺醒
+  bane: string // 災禍轉福
 }
 
 export interface CalcOutput {

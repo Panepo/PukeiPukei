@@ -41,8 +41,7 @@ const useStyles = makeStyles((theme: Theme) =>
     inputs: {
       margin: theme.spacing(1)
     },
-    image: {width: 15,
-      height: 15,}
+    image: { width: 15, height: 15 }
   })
 )
 
@@ -65,7 +64,8 @@ export default function Content() {
     ecri: '0', // 屬性會心
     scri: '0', // 特殊會心
     eadd: '0', // 屬性加速
-    safi: '0' // 龍脈覺醒
+    safi: '0', // 龍脈覺醒
+    bane: '0'  // 災禍轉福
   })
   const [output, setOutput] = React.useState<CalcOutput>({
     cri: '0',
@@ -124,7 +124,8 @@ export default function Content() {
       ecri: '0', // 屬性會心
       scri: '0', // 特殊會心
       eadd: '0', // 屬性加速
-      safi: '0' // 龍脈覺醒
+      safi: '0', // 龍脈覺醒
+      bane: '0'  // 災禍轉福
     })
   }
 
@@ -142,13 +143,13 @@ export default function Content() {
         >
           {Data.weaponType.map((type, index) => {
             return (
-              <MenuItem value={type.id}>
+              <MenuItem value={type.id} key={'type' + type.id}>
                 <img
                   className={classes.image}
                   src={imageWeapon[index as keyof typeof imageWeapon]}
                   alt={type.text}
                 />
-                {" " + type.text}
+                {' ' + type.text}
               </MenuItem>
             )
           })}
@@ -184,18 +185,16 @@ export default function Content() {
             id: 'etype'
           }}
         >
-          <MenuItem value={0}>
-            無
-          </MenuItem>
+          <MenuItem value={0}>無</MenuItem>
           {Data.eleType.map((type, index) => {
             return (
-              <MenuItem value={type.id}>
+              <MenuItem value={type.id} key={'etype' + type.id}>
                 <img
                   className={classes.image}
                   src={imageElement[index as keyof typeof imageElement]}
                   alt={type.text}
                 />
-                {" " + type.text}
+                {' ' + type.text}
               </MenuItem>
             )
           })}
@@ -212,7 +211,7 @@ export default function Content() {
         }}
       />
       <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="etype">斬味</InputLabel>
+        <InputLabel htmlFor="sha">斬味</InputLabel>
         <Select
           native
           value={state.sha}
@@ -223,7 +222,7 @@ export default function Content() {
           }}
         >
           {Data.shaType.map((type) => {
-            return <option value={type.id}>{type.text}</option>
+            return <option value={type.id} key={'sha' + type.id}>{type.text}</option>
           })}
         </Select>
       </FormControl>
@@ -235,7 +234,7 @@ export default function Content() {
       <div>
         {Layout.skillAttack.map((layout) => {
           return (
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} key={'form' + layout.id}>
               <InputLabel htmlFor={layout.id}>{layout.text}</InputLabel>
               <Select
                 native
@@ -247,7 +246,7 @@ export default function Content() {
                 }}
               >
                 {layout.data.map((type) => {
-                  return <option value={type.id}>{type.text}</option>
+                  return <option value={type.id} key={layout.id + type.id}>{type.text}</option>
                 })}
               </Select>
             </FormControl>
@@ -255,7 +254,7 @@ export default function Content() {
         })}
         {Layout.skillCrit.map((layout) => {
           return (
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} key={'form' + layout.id}>
               <InputLabel htmlFor={layout.id}>{layout.text}</InputLabel>
               <Select
                 native
@@ -267,7 +266,7 @@ export default function Content() {
                 }}
               >
                 {layout.data.map((type) => {
-                  return <option value={type.id}>{type.text}</option>
+                  return <option value={type.id} key={layout.id + type.id}>{type.text}</option>
                 })}
               </Select>
             </FormControl>
@@ -277,7 +276,7 @@ export default function Content() {
       <div>
         {Layout.skillCrip.map((layout) => {
           return (
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} key={'form' + layout.id}>
               <InputLabel htmlFor={layout.id}>{layout.text}</InputLabel>
               <Select
                 native
@@ -289,7 +288,7 @@ export default function Content() {
                 }}
               >
                 {layout.data.map((type) => {
-                  return <option value={type.id}>{type.text}</option>
+                  return <option value={type.id} key={layout.id + type.id}>{type.text}</option>
                 })}
               </Select>
             </FormControl>

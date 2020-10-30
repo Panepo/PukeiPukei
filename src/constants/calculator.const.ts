@@ -130,3 +130,10 @@ export const skillSafi: StructDataValue3[] = [
   { id: '1', text: '龍脈覺醒', value1: 80, value2: 80, value3: 20 },
   { id: '2', text: '真龍脈覺醒', value1: 150, value2: 120, value3: 40 }
 ]
+
+export const skillBane: StructDataValue3[] = [
+  { id: '0', text: '', value1: 0, value2: 0, value3: 0 },
+  { id: '1', text: '災禍轉福 Lv1', value1: 12, value2: 30, value3: 1.05 },
+  { id: '2', text: '災禍轉福 Lv2', value1: 15, value2: 60, value3: 1.1 },
+  { id: '3', text: '災禍轉福 Lv3', value1: 18, value2: 90, value3: 1.15 }
+]

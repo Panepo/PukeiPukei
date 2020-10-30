@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       minHeight: '100vh',
       flexDirection: 'column'
+    },
+    content: {
+      minHeight: 'calc(100vh - 124px)'
     }
   })
 )
@@ -22,8 +25,10 @@ function App() {
   return (
     <div className={classes.root}>
       <Header />
-      <Ribbon />
-      <Content />
+      <div className={classes.content}>
+        <Ribbon />
+        <Content />
+      </div>
       <Footer />
     </div>
   )
