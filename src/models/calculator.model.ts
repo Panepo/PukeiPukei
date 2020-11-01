@@ -17,9 +17,16 @@ export interface CalcInput {
   eadd: string // 屬性加速
   safi: string // 龍脈覺醒
   bane: string // 災禍轉福
+  cat: string
+  drink: string
+  food: string
+  dust: string
+  slot1: string
+  slot2: string
 }
 
 export interface CalcOutput {
+  out: boolean
   cri: string
   atk: string
   ele: string
