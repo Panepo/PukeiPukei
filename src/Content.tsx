@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       marginTop: '-55vh',
-      marginBottom: '60px',
+      marginBottom: theme.spacing(1),
       flex: 1
     },
     formControl: {
@@ -41,7 +41,10 @@ const useStyles = makeStyles((theme: Theme) =>
     inputs: {
       margin: theme.spacing(1)
     },
-    image: { width: 15, height: 15 }
+    image: { width: 15, height: 15 },
+    output: {
+      marginBottom: theme.spacing(5)
+    }
   })
 )
 
@@ -65,9 +68,16 @@ export default function Content() {
     scri: '0', // 特殊會心
     eadd: '0', // 屬性加速
     safi: '0', // 龍脈覺醒
-    bane: '0'  // 災禍轉福
+    bane: '0', // 災禍轉福
+    cat: '0',
+    drink: '1',
+    food: '0',
+    dust: '0',
+    slot1: '1',
+    slot2: '1'
   })
   const [output, setOutput] = React.useState<CalcOutput>({
+    out: false,
     cri: '0',
     atk: '0',
     ele: '0'
@@ -100,6 +110,7 @@ export default function Content() {
     const eleType = getTextById(Data.eleType, state.etype)
 
     setOutput({
+      out: true,
       cri: cri.toString(),
       atk: atk.toString(),
       ele: eleType + ' ' + ele.toString()
@@ -107,6 +118,7 @@ export default function Content() {
   }
 
   const handleCancel = () => {
+    console.log(output.out)
     setState({
       type: '0', // 武器別
       atk: '0',
@@ -125,7 +137,13 @@ export default function Content() {
       scri: '0', // 特殊會心
       eadd: '0', // 屬性加速
       safi: '0', // 龍脈覺醒
-      bane: '0'  // 災禍轉福
+      bane: '0', // 災禍轉福
+      cat: '0',
+      drink: '1',
+      food: '0',
+      dust: '0',
+      slot1: '1',
+      slot2: '1'
     })
   }
 
@@ -222,7 +240,11 @@ export default function Content() {
           }}
         >
           {Data.shaType.map((type) => {
-            return <option value={type.id} key={'sha' + type.id}>{type.text}</option>
+            return (
+              <option value={type.id} key={'sha' + type.id}>
+                {type.text}
+              </option>
+            )
           })}
         </Select>
       </FormControl>
@@ -234,7 +256,10 @@ export default function Content() {
       <div>
         {Layout.skillAttack.map((layout) => {
           return (
-            <FormControl className={classes.formControl} key={'form' + layout.id}>
+            <FormControl
+              className={classes.formControl}
+              key={'form' + layout.id}
+            >
               <InputLabel htmlFor={layout.id}>{layout.text}</InputLabel>
               <Select
                 native
@@ -246,7 +271,11 @@ export default function Content() {
                 }}
               >
                 {layout.data.map((type) => {
-                  return <option value={type.id} key={layout.id + type.id}>{type.text}</option>
+                  return (
+                    <option value={type.id} key={layout.id + type.id}>
+                      {type.text}
+                    </option>
+                  )
                 })}
               </Select>
             </FormControl>
@@ -254,7 +283,10 @@ export default function Content() {
         })}
         {Layout.skillCrit.map((layout) => {
           return (
-            <FormControl className={classes.formControl} key={'form' + layout.id}>
+            <FormControl
+              className={classes.formControl}
+              key={'form' + layout.id}
+            >
               <InputLabel htmlFor={layout.id}>{layout.text}</InputLabel>
               <Select
                 native
@@ -266,7 +298,11 @@ export default function Content() {
                 }}
               >
                 {layout.data.map((type) => {
-                  return <option value={type.id} key={layout.id + type.id}>{type.text}</option>
+                  return (
+                    <option value={type.id} key={layout.id + type.id}>
+                      {type.text}
+                    </option>
+                  )
                 })}
               </Select>
             </FormControl>
@@ -276,7 +312,10 @@ export default function Content() {
       <div>
         {Layout.skillCrip.map((layout) => {
           return (
-            <FormControl className={classes.formControl} key={'form' + layout.id}>
+            <FormControl
+              className={classes.formControl}
+              key={'form' + layout.id}
+            >
               <InputLabel htmlFor={layout.id}>{layout.text}</InputLabel>
               <Select
                 native
@@ -288,7 +327,40 @@ export default function Content() {
                 }}
               >
                 {layout.data.map((type) => {
-                  return <option value={type.id} key={layout.id + type.id}>{type.text}</option>
+                  return (
+                    <option value={type.id} key={layout.id + type.id}>
+                      {type.text}
+                    </option>
+                  )
+                })}
+              </Select>
+            </FormControl>
+          )
+        })}
+      </div>
+      <div>
+        {Layout.skillItem.map((layout) => {
+          return (
+            <FormControl
+              className={classes.formControl}
+              key={'form' + layout.id}
+            >
+              <InputLabel htmlFor={layout.id}>{layout.text}</InputLabel>
+              <Select
+                native
+                value={state[layout.id as keyof typeof state]}
+                onChange={handleSelect}
+                inputProps={{
+                  name: layout.id,
+                  id: layout.id
+                }}
+              >
+                {layout.data.map((type) => {
+                  return (
+                    <option value={type.id} key={layout.id + type.id}>
+                      {type.text}
+                    </option>
+                  )
                 })}
               </Select>
             </FormControl>
@@ -297,6 +369,49 @@ export default function Content() {
       </div>
     </React.Fragment>
   )
+
+  const renderOutput = () => {
+    if (output.out) {
+      return (
+        <Card className={classes.output}>
+          <CardContent>
+            <Paper
+              className={classes.subtitle}
+              variant="outlined"
+              elevation={0}
+            >
+              <Typography
+                className={classes.subtitleText}
+                gutterBottom
+                variant="h5"
+                component="h2"
+              >
+                Results
+              </Typography>
+            </Paper>
+            <TextField
+              id="outCri"
+              label="會心"
+              className={classes.formControl}
+              value={output.cri}
+            />
+            <TextField
+              id="outAtk"
+              label="攻擊"
+              className={classes.formControl}
+              value={output.atk}
+            />
+            <TextField
+              id="outEle"
+              label="屬性"
+              className={classes.formControl}
+              value={output.ele}
+            />
+          </CardContent>
+        </Card>
+      )
+    } else return null
+  }
 
   return (
     <Container>
@@ -316,42 +431,17 @@ export default function Content() {
             {renderState}
             {renderSkill}
           </div>
-          <Button onClick={handleCalc} color="primary">
-            Calculate
-          </Button>
-          <Button onClick={handleCancel} color="primary">
-            Cancel
-          </Button>
-          <Paper className={classes.subtitle} variant="outlined" elevation={0}>
-            <Typography
-              className={classes.subtitleText}
-              gutterBottom
-              variant="h5"
-              component="h2"
-            >
-              Results
-            </Typography>
-          </Paper>
-          <TextField
-            id="outCri"
-            label="會心"
-            className={classes.formControl}
-            value={output.cri}
-          />
-          <TextField
-            id="outAtk"
-            label="攻擊"
-            className={classes.formControl}
-            value={output.atk}
-          />
-          <TextField
-            id="outEle"
-            label="屬性"
-            className={classes.formControl}
-            value={output.ele}
-          />
+          <Container>
+            <Button onClick={handleCalc} color="primary">
+              Calculate
+            </Button>
+            <Button onClick={handleCancel} color="primary">
+              Cancel
+            </Button>
+          </Container>
         </CardContent>
       </Card>
+      {renderOutput()}
     </Container>
   )
 }

@@ -137,3 +137,37 @@ export const skillBane: StructDataValue3[] = [
   { id: '2', text: '災禍轉福 Lv2', value1: 15, value2: 60, value3: 1.1 },
   { id: '3', text: '災禍轉福 Lv3', value1: 18, value2: 90, value3: 1.15 }
 ]
+
+export const itemCat: StructDataValue[] = [
+  { id: '0', text: '', value: 0 },
+  { id: '1', text: '貓飯攻擊 小', value: 5 },
+  { id: '2', text: '貓飯攻擊 中', value: 10 },
+  { id: '3', text: '貓飯攻擊 大', value: 15 }
+]
+
+export const itemDrink: StructDataValue[] = [
+  { id: '0', text: '', value: 0 },
+  { id: '1', text: '鬼人藥', value: 5 },
+  { id: '2', text: '鬼人藥 大', value: 7 }
+]
+
+export const itemFood: StructDataValue[] = [
+  { id: '0', text: '', value: 0 },
+  { id: '1', text: '鬼人種子', value: 10 },
+  { id: '2', text: '鬼人藥丸', value: 20 }
+]
+
+export const itemDust: StructDataValue[] = [
+  { id: '0', text: '', value: 0 },
+  { id: '1', text: '鬼人粉塵', value: 10 }
+]
+
+export const itemSlot1: StructDataValue[] = [
+  { id: '0', text: '', value: 0 },
+  { id: '1', text: '力量之符', value: 6 }
+]
+
+export const itemSlot2: StructDataValue[] = [
+  { id: '0', text: '', value: 0 },
+  { id: '1', text: '力量之爪', value: 9 }
+]

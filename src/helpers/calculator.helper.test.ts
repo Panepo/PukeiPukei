@@ -21,7 +21,13 @@ describe('Helpere >> calculator helper test', () => {
       scri: '1', // 特殊會心
       eadd: '1', // 屬性加速
       safi: '1', // 龍脈覺醒
-      bane: '1'  // 災禍轉福
+      bane: '1', // 災禍轉福
+      cat: '0',
+      drink: '0',
+      food: '0',
+      dust: '0',
+      slot1: '0',
+      slot2: '0'
     }
 
     expect(calculator.calcCritical(input1)).toBe(70)
@@ -46,7 +52,13 @@ describe('Helpere >> calculator helper test', () => {
       scri: '1', // 特殊會心
       eadd: '1', // 屬性加速
       safi: '1', // 龍脈覺醒
-      bane: '1'  // 災禍轉福
+      bane: '1', // 災禍轉福
+      cat: '0',
+      drink: '0',
+      food: '0',
+      dust: '0',
+      slot1: '0',
+      slot2: '0'
     }
 
     expect(calculator.calcCritical(input2)).toBe(100)
@@ -70,7 +82,13 @@ describe('Helpere >> calculator helper test', () => {
       scri: '1', // 特殊會心
       eadd: '1', // 屬性加速
       safi: '1', // 龍脈覺醒
-      bane: '1'  // 災禍轉福
+      bane: '1', // 災禍轉福
+      cat: '0',
+      drink: '0',
+      food: '0',
+      dust: '0',
+      slot1: '0',
+      slot2: '0'
     }
 
     expect(Math.round(calculator.calcElement(input3, 70))).toBe(215)
