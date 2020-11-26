@@ -38,7 +38,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --coverage",
     "eject": "react-scripts eject",
-    "prettier": "prettier --single-quote --no-semi --trailing-comma none --write \"src/**/*.{ts,tsx}\"",
+    "prettier": "prettier --single-quote --no-semi --jsx-bracket-same-line --trailing-comma none --write \"src/**/*.{ts,tsx}\"",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build"
   },
@@ -63,5 +63,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "importSort": {
+    ".js, .jsx, .ts, .tsx": {
+      "parser": "babylon",
+      "style": "module"
+    }
   }
 }

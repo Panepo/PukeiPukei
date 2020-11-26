@@ -5,14 +5,10 @@ import App from './App'
 describe('Render >> Content test', () => {
   test('renders content text', () => {
     render(<App />)
-    const textElement1 = screen.getByText(
-      /Status/i
-    )
+    const textElement1 = screen.getByText(/Status/i)
     expect(textElement1).toBeInTheDocument()
 
-    const textElement2 = screen.getByText(
-      /Results/i
-    )
+    const textElement2 = screen.getByText(/Results/i)
     expect(textElement2).toBeInTheDocument()
   })
 })

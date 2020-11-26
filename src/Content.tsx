@@ -1,24 +1,25 @@
-import React from 'react'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import NumberFormatCustom from './componments/NumberFormat'
-import Container from '@material-ui/core/Container'
+import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
-import TextField from '@material-ui/core/TextField'
-import Select from '@material-ui/core/Select'
-import InputLabel from '@material-ui/core/InputLabel'
+import Container from '@material-ui/core/Container'
 import FormControl from '@material-ui/core/FormControl'
-import Typography from '@material-ui/core/Typography'
-import Paper from '@material-ui/core/Paper'
-import Button from '@material-ui/core/Button'
+import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
+import Paper from '@material-ui/core/Paper'
+import Select from '@material-ui/core/Select'
+import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Typography from '@material-ui/core/Typography'
+import React from 'react'
+
+import NumberFormatCustom from './componments/NumberFormat'
 import * as Data from './constants/calculator.const'
 import * as Layout from './constants/layout.const'
-import { CalcInput, CalcOutput } from './models/calculator.model'
 import * as Calculator from './helpers/calculator.helper'
 import { getTextById } from './helpers/common.helper'
-import imageWeapon from './images/weapon'
 import imageElement from './images/element'
+import imageWeapon from './images/weapon'
+import { CalcInput, CalcOutput } from './models/calculator.model'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -80,7 +81,8 @@ export default function Content() {
     out: false,
     cri: '0',
     atk: '0',
-    ele: '0'
+    ele: '0',
+    spec: []
   })
 
   const handleChange = (
@@ -108,12 +110,14 @@ export default function Content() {
     const atk = Math.round(Calculator.calcAttack(state, cri))
     const ele = Math.round(Calculator.calcElement(state, cri))
     const eleType = getTextById(Data.eleType, state.etype)
+    const spec = Calculator.calcSpecOutput(state.type, atk, ele)
 
     setOutput({
       out: true,
       cri: cri.toString(),
       atk: atk.toString(),
-      ele: eleType + ' ' + ele.toString()
+      ele: eleType + ' ' + ele.toString(),
+      spec: spec
     })
   }
 
@@ -157,8 +161,7 @@ export default function Content() {
           inputProps={{
             name: 'type',
             id: 'type'
-          }}
-        >
+          }}>
           {Data.weaponType.map((type, index) => {
             return (
               <MenuItem value={type.id} key={'type' + type.id}>
@@ -201,8 +204,7 @@ export default function Content() {
           inputProps={{
             name: 'etype',
             id: 'etype'
-          }}
-        >
+          }}>
           <MenuItem value={0}>無</MenuItem>
           {Data.eleType.map((type, index) => {
             return (
@@ -237,8 +239,7 @@ export default function Content() {
           inputProps={{
             name: 'sha',
             id: 'sha'
-          }}
-        >
+          }}>
           {Data.shaType.map((type) => {
             return (
               <option value={type.id} key={'sha' + type.id}>
@@ -258,8 +259,7 @@ export default function Content() {
           return (
             <FormControl
               className={classes.formControl}
-              key={'form' + layout.id}
-            >
+              key={'form' + layout.id}>
               <InputLabel htmlFor={layout.id}>{layout.text}</InputLabel>
               <Select
                 native
@@ -268,8 +268,7 @@ export default function Content() {
                 inputProps={{
                   name: layout.id,
                   id: layout.id
-                }}
-              >
+                }}>
                 {layout.data.map((type) => {
                   return (
                     <option value={type.id} key={layout.id + type.id}>
@@ -285,8 +284,7 @@ export default function Content() {
           return (
             <FormControl
               className={classes.formControl}
-              key={'form' + layout.id}
-            >
+              key={'form' + layout.id}>
               <InputLabel htmlFor={layout.id}>{layout.text}</InputLabel>
               <Select
                 native
@@ -295,8 +293,7 @@ export default function Content() {
                 inputProps={{
                   name: layout.id,
                   id: layout.id
-                }}
-              >
+                }}>
                 {layout.data.map((type) => {
                   return (
                     <option value={type.id} key={layout.id + type.id}>
@@ -314,8 +311,7 @@ export default function Content() {
           return (
             <FormControl
               className={classes.formControl}
-              key={'form' + layout.id}
-            >
+              key={'form' + layout.id}>
               <InputLabel htmlFor={layout.id}>{layout.text}</InputLabel>
               <Select
                 native
@@ -324,8 +320,7 @@ export default function Content() {
                 inputProps={{
                   name: layout.id,
                   id: layout.id
-                }}
-              >
+                }}>
                 {layout.data.map((type) => {
                   return (
                     <option value={type.id} key={layout.id + type.id}>
@@ -343,8 +338,7 @@ export default function Content() {
           return (
             <FormControl
               className={classes.formControl}
-              key={'form' + layout.id}
-            >
+              key={'form' + layout.id}>
               <InputLabel htmlFor={layout.id}>{layout.text}</InputLabel>
               <Select
                 native
@@ -353,8 +347,7 @@ export default function Content() {
                 inputProps={{
                   name: layout.id,
                   id: layout.id
-                }}
-              >
+                }}>
                 {layout.data.map((type) => {
                   return (
                     <option value={type.id} key={layout.id + type.id}>
@@ -378,35 +371,49 @@ export default function Content() {
             <Paper
               className={classes.subtitle}
               variant="outlined"
-              elevation={0}
-            >
+              elevation={0}>
               <Typography
                 className={classes.subtitleText}
                 gutterBottom
                 variant="h5"
-                component="h2"
-              >
+                component="h2">
                 Results
               </Typography>
             </Paper>
-            <TextField
-              id="outCri"
-              label="會心"
-              className={classes.formControl}
-              value={output.cri}
-            />
-            <TextField
-              id="outAtk"
-              label="攻擊"
-              className={classes.formControl}
-              value={output.atk}
-            />
-            <TextField
-              id="outEle"
-              label="屬性"
-              className={classes.formControl}
-              value={output.ele}
-            />
+            <div>
+              <TextField
+                id="outCri"
+                label="會心"
+                className={classes.formControl}
+                value={output.cri}
+              />
+              <TextField
+                id="outAtk"
+                label="攻擊"
+                className={classes.formControl}
+                value={output.atk}
+              />
+              <TextField
+                id="outEle"
+                label="屬性"
+                className={classes.formControl}
+                value={output.ele}
+              />
+            </div>
+            {output.spec.length > 0 ? (
+              <div>
+                {output.spec.map((specData) => {
+                  return (
+                    <TextField
+                      id={specData.text}
+                      label={specData.text}
+                      className={classes.formControl}
+                      value={specData.value}
+                    />
+                  )
+                })}
+              </div>
+            ) : null}
           </CardContent>
         </Card>
       )
@@ -422,8 +429,7 @@ export default function Content() {
               className={classes.subtitleText}
               gutterBottom
               variant="h5"
-              component="h2"
-            >
+              component="h2">
               Status
             </Typography>
           </Paper>

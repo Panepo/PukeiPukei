@@ -1,10 +1,11 @@
+import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 import React from 'react'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import withRoot from './withRoot'
-import Header from './Header'
-import Ribbon from './Ribbon'
+
 import Content from './Content'
 import Footer from './Footer'
+import Header from './Header'
+import Ribbon from './Ribbon'
+import withRoot from './withRoot'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

@@ -30,6 +30,7 @@ export interface CalcOutput {
   cri: string
   atk: string
   ele: string
+  spec: SpecOutput[]
 }
 
 export interface StructData {
@@ -56,4 +57,9 @@ export interface StructDataValue3 {
   value1: number
   value2: number
   value3: number
+}
+
+export interface SpecOutput {
+  text: string
+  value: number
 }

@@ -1,5 +1,9 @@
 import * as Data from '../constants/calculator.const'
-import { CalcInput } from '../models/calculator.model'
+import {
+  CalcInput,
+  SpecOutput,
+  StructDataValue
+} from '../models/calculator.model'
 import { getValueById } from './common.helper'
 
 export const calcCritical = (input: CalcInput) => {
@@ -63,5 +67,47 @@ export const calcElement = (input: CalcInput, crit: number) => {
     const crip = getValueById(Data.skillScri, input.scri, keyCri)
     sta = sta * (1 + (crit / 100) * crip)
     return sta
+  }
+}
+
+export const calcSpecOutput = (
+  type: string,
+  atk: number,
+  ele: number
+): SpecOutput[] => {
+  switch (type) {
+    case '1':
+      return Data.outLong.reduce((output: any[], data: StructDataValue) => {
+        output.push({ text: data.text, value: Math.round(atk * data.value) })
+        return output
+      }, [])
+    case '4':
+      return Data.outHammer.reduce((output: any[], data: StructDataValue) => {
+        output.push({ text: data.text, value: Math.round(atk * data.value) })
+        return output
+      }, [])
+    case '10':
+      return Data.outRod.reduce((output: any[], data: StructDataValue) => {
+        output.push({ text: data.text, value: Math.round(atk * data.value) })
+        return output
+      }, [])
+    case '13':
+      return Data.outBow.reduce((output: any[], data: StructDataValue) => {
+        output.push({ text: data.text, value: Math.round(atk * data.value) })
+        return output
+      }, [])
+    case '8':
+      return [
+        {
+          text: Data.outSlash[0].text,
+          value: Math.round(atk * Data.outSlash[0].value)
+        },
+        {
+          text: Data.outSlash[1].text,
+          value: Math.round(ele * Data.outSlash[1].value)
+        }
+      ]
+    default:
+      return []
   }
 }

@@ -1,12 +1,12 @@
-import React from 'react'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
-import Drawer from '@material-ui/core/Drawer'
 import Button from '@material-ui/core/Button'
+import Drawer from '@material-ui/core/Drawer'
+import IconButton from '@material-ui/core/IconButton'
+import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
+import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
+import MenuIcon from '@material-ui/icons/Menu'
+import React from 'react'
 
 import { linkHeader } from './constants/link.const'
 import { Link } from './models/common.model'
@@ -50,22 +50,19 @@ export default function Header() {
     <Drawer
       className={classes.drawer}
       open={drawer}
-      onClose={handleDrawer(false)}
-    >
+      onClose={handleDrawer(false)}>
       <Typography
         className={classes.drawerTitle}
         variant="h6"
         color="inherit"
-        noWrap
-      >
+        noWrap>
         Reference
       </Typography>
       <div
         tabIndex={0}
         role="button"
         onClick={handleDrawer(false)}
-        onKeyDown={handleDrawer(false)}
-      ></div>
+        onKeyDown={handleDrawer(false)}></div>
     </Drawer>
   )
 
@@ -75,8 +72,7 @@ export default function Header() {
         color="primary"
         className={classes.button}
         key={data.text}
-        href={data.link}
-      >
+        href={data.link}>
         {data.text}
       </Button>
     )
@@ -92,8 +88,7 @@ export default function Header() {
             className={classes.menuButton}
             color="inherit"
             aria-label="Menu"
-            onClick={handleDrawer(true)}
-          >
+            onClick={handleDrawer(true)}>
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.grow}>

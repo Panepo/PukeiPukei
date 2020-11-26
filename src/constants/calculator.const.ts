@@ -171,3 +171,28 @@ export const itemSlot2: StructDataValue[] = [
   { id: '0', text: '', value: 0 },
   { id: '1', text: '力量之爪', value: 9 }
 ]
+
+export const outLong: StructDataValue[] = [
+  { id: '0', text: '白刃', value: 1.05 },
+  { id: '1', text: '黃刃', value: 1.1 },
+  { id: '2', text: '紅刃', value: 1.2 }
+]
+
+export const outHammer: StructDataValue[] = [
+  { id: '0', text: '蓄力', value: 1.07 }
+]
+
+export const outSlash: StructDataValue[] = [
+  { id: '0', text: '強擊瓶', value: 1.17 },
+  { id: '1', text: '強屬性瓶', value: 1.45 }
+]
+
+export const outRod: StructDataValue[] = [
+  { id: '0', text: '紅白精華', value: 1.1 },
+  { id: '1', text: '全精華', value: 1.15 }
+]
+
+export const outBow: StructDataValue[] = [
+  { id: '0', text: '接擊瓶', value: 1.18 },
+  { id: '1', text: '強擊瓶', value: 1.35 }
+]

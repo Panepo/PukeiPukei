@@ -22,9 +22,9 @@ export default function Footer() {
   const classes = useStyles()
   return (
     <footer className={classes.root}>
-        <Typography className={classes.text}>
-          Copyright &copy; Panepo@Github 2020 All Rights Reserved.
-        </Typography>
+      <Typography className={classes.text}>
+        Copyright &copy; Panepo@Github 2020 All Rights Reserved.
+      </Typography>
     </footer>
   )
 }
